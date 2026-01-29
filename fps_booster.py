@@ -96,7 +96,7 @@ def run_optimization():
     subprocess.run("ipconfig /flushdns", shell=True, capture_output=True)
 
     print(f"\n--- Summary: {stats['optimal']} Optimal, {stats['fixed']} Fixed, {stats['failed']} Failed ---")
-    if stats['fixed'] > 0: print("Reboot required to apply kernel changes.")
+    if stats['fixed'] > 0: print("Reboot required to apply changes.")
 
 if __name__ == "__main__":
     run_optimization()

@@ -25,7 +25,7 @@ Requirements: Windows 10/11, Python 3.7+
 Run as Administrator:
 
 ```bash
-python cs2_fps_booster.py
+python fps_booster.py
 ```
 
 The script checks each setting and shows status:
