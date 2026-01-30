@@ -1,4 +1,6 @@
-import subprocess, winreg, platform, os
+import subprocess
+import winreg
+import platform
 
 def get_reg(path, name, root=winreg.HKEY_LOCAL_MACHINE):
     try:
@@ -6,7 +8,8 @@ def get_reg(path, name, root=winreg.HKEY_LOCAL_MACHINE):
         value, _ = winreg.QueryValueEx(key, name)
         winreg.CloseKey(key)
         return value
-    except: return None
+    except Exception:
+        return None
 
 def set_reg(path, name, value, root=winreg.HKEY_LOCAL_MACHINE, val_type=winreg.REG_DWORD):
     try:
@@ -14,7 +17,8 @@ def set_reg(path, name, value, root=winreg.HKEY_LOCAL_MACHINE, val_type=winreg.R
         winreg.SetValueEx(key, name, 0, val_type, value)
         winreg.CloseKey(key)
         return True
-    except: return False
+    except Exception:
+        return False
 
 def run_optimization():
     stats = {"optimal": 0, "fixed": 0, "failed": 0}
@@ -107,7 +111,8 @@ def run_optimization():
     subprocess.run("ipconfig /flushdns", shell=True, capture_output=True)
 
     print(f"\n--- Summary: {stats['optimal']} Optimal, {stats['fixed']} Fixed, {stats['failed']} Failed ---")
-    if stats['fixed'] > 0: print("Reboot required to apply changes.")
+    if stats['fixed'] > 0:
+        print("Reboot required to apply changes.")
 
 if __name__ == "__main__":
     run_optimization()
